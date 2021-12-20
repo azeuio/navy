@@ -7,7 +7,8 @@
 
 NAME		=	navy
 
-SRC			=	src/main.c
+SRC			=	src/main.c			\
+				src/print_help.c	\
 
 TEST_SRC	=	
 
