@@ -10,6 +10,7 @@ NAME		=	navy
 SRC			=	src/main.c			\
 				src/print_help.c	\
 				src/board.c			\
+				src/board_draw.c	\
 
 TEST_SRC	=	
 

@@ -18,13 +18,9 @@ int main(int ac, char **av)
         return print_help();
     my_printf("Main function\n");
     board_p1 = load_board(av[1]);
-    if (board_p1 == NULL)
+    if (board_p1 == NULL) {
+        my_printf("Board couldn't be loaded.\n");
         return 84;
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
-            my_printf("%d ", board_p1[i][j]);
-        }
-        my_printf("\n");
     }
     board_destroy(board_p1);
     return 0;

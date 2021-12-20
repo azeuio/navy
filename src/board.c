@@ -2,7 +2,8 @@
 ** EPITECH PROJECT, 2021
 ** navy
 ** File description:
-** create_board
+** load a board with load_board(const char *filename)
+** destroy a board with board_destroy(board_t board)
 */
 
 #include "navy.h"
@@ -76,6 +77,7 @@ board_t load_board(const char *filename)
     int read_size = 0;
     int i = 0;
     int is_vertical = 0;
+    int ship_size = 0;
 
     if (!is_file_valid(fopen(filename, "r")))
         return NULL;
@@ -84,9 +86,10 @@ board_t load_board(const char *filename)
         for (i = 0; buffer[i] != ':'; i++) {
         }
         is_vertical = buffer[i + 1] == buffer[i + 4];
-        for (int j = 0; j < my_getnbr(buffer); j++) {
+        ship_size = my_getnbr(buffer);
+        for (int j = 0; j < ship_size; j++) {
             board[buffer[i + 2] - '1' + j * !is_vertical]\
-            [buffer[i + 1] - 'A' + j * is_vertical] = 1;
+            [buffer[i + 1] - 'A' + j * is_vertical] = ship_size;
         }
         read_size = getline(&buffer, &bufsize, file);
     }
@@ -94,7 +97,7 @@ board_t load_board(const char *filename)
 }
 
 
-void board_destroy(board_t *board)
+void board_destroy(board_t board)
 {
     for (int i = 0; i < 8; i++) {
         free(board[i]);
