@@ -1,0 +1,12 @@
+*~
+*.a
+'#'*'#'
+*.gcno
+*.gcda
+*.o
+*.out
+*.gch
+unit_test
+.vscode
+vgcore*
+navy
