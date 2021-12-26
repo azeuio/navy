@@ -10,19 +10,13 @@
 
 static char print_ship(int x, int y, board_t board)
 {
-    switch (board[y][x]) {
-        case 0:
-            return '.';
-        case -1:
-            return 'x';
-        case -2:
-            return 'o';
-        default:
-            break;
-    }
-    if (board[y][x] > 0)
-        return '0' + board[y][x];
-    return ' ';
+    if (board[y][x] == cell_empty)
+        return '.';
+    if (CELL_IS_MISSED(board, x, y))
+        return 'o';
+    if (CELL_IS_HIT(board, x, y))
+        return 'x';
+    return '0' + board[y][x];
 }
 
 static void print_grid(int x, int y, board_t board)
