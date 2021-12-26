@@ -8,6 +8,23 @@
 #include "navy.h"
 #include "my.h"
 
+static char print_ship(int x, int y, board_t board)
+{
+    switch (board[y][x]) {
+        case 0:
+            return '.';
+        case -1:
+            return 'x';
+        case -2:
+            return 'o';
+        default:
+            break;
+    }
+    if (board[y][x] > 0)
+        return '0' + board[y][x];
+    return ' ';
+}
+
 static void print_grid(int x, int y, board_t board)
 {
     char lookup[256] = "01234-6789AB- EF H-bcdef|hI|K+MNOP";
@@ -25,8 +42,7 @@ static void print_grid(int x, int y, board_t board)
     if (x == 0 && y == 0)
         to_print = ' ';
     if (to_print == '0')
-        to_print = (board[y - 2][(x - 2) / 2]) ? \
-        board[y - 2][(x - 2) / 2] + '0' : '.';
+        to_print = print_ship((x - 2) / 2, y - 2, board);
     my_printf("%c", to_print);
 }
 

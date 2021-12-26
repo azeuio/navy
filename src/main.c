@@ -22,6 +22,7 @@ int main(int ac, char **av)
         my_printf("Board couldn't be loaded.\n");
         return 84;
     }
+    board_draw(board_p1);
     board_destroy(board_p1);
     return 0;
 }
