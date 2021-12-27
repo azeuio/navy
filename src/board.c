@@ -47,7 +47,7 @@ static int is_file_valid(FILE *file)
     int verdict = 1;
 
     if (file == NULL) {
-        fclose(file);
+        free(buffer);
         return 0;
     }
     read_size = getline(&buffer, &bufsize, file);
@@ -85,7 +85,7 @@ board_t load_board(const char *filename)
     while (read_size > 0) {
         for (i = 0; buffer[i] != ':'; i++) {
         }
-        is_vertical = buffer[i + 1] == buffer[i + 4];
+        is_vertical = buffer[i + 2] == buffer[i + 5];
         ship_size = my_getnbr(buffer);
         for (int j = 0; j < ship_size; j++) {
             board[buffer[i + 2] - '1' + j * !is_vertical]\
