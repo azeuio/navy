@@ -7,10 +7,13 @@
 
 NAME		=	navy
 
-SRC			=	src/main.c			\
-				src/print_help.c	\
-				src/board.c			\
-				src/board_draw.c	\
+SRC			=	src/main.c					\
+				src/print_help.c			\
+				src/board.c					\
+				src/board_draw.c			\
+				src/board_has_ships.c		\
+				src/game.c					\
+				src/signals.c				\
 
 TEST_SRC	=	
 
@@ -18,7 +21,7 @@ OBJ			=	$(SRC:.c=.o)
 
 CC			=	gcc
 
-CFLAGS		=	-Wall -Wextra -I./include -g
+CFLAGS		=	-g -Wall -Wextra -I./include
 
 LDFLAGS		=	-Llib -lmy
 

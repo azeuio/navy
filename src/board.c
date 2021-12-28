@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <stddef.h>
 
-static board_t create_board(void)
+board_t create_board(void)
 {
     board_t board = malloc(sizeof(int *) * 8);
 
@@ -53,6 +53,7 @@ static int is_file_valid(FILE *file)
     read_size = getline(&buffer, &bufsize, file);
     buffer[read_size] = '\0';
     while (read_size != -1 && verdict == 1) {
+        buffer[read_size] = '\0';
         for (i = 0; buffer[i] != ':'; i++) {
             if (!my_isnum(buffer[i]))
                 verdict = 0;
@@ -62,7 +63,6 @@ static int is_file_valid(FILE *file)
         if (!is_line_valid(buffer + i))
             verdict = 0;
         read_size = getline(&buffer, &bufsize, file);
-        buffer[read_size] = '\0';
     }
     fclose(file);
     return verdict;
