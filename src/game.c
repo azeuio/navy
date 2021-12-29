@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
 
 static void shoot_ennemy_at\
 (board_t *ennemy_board, board_t *discovered_board, int x, int y)
@@ -46,7 +47,7 @@ static void get_shooting_target_inner_loop\
     }
 }
 
-static int get_shooting_target(void)
+static int *get_shooting_target(void)
 {
     size_t input_size = 6;
     char *input = malloc(input_size);
@@ -54,6 +55,7 @@ static int get_shooting_target(void)
     int *result = malloc(sizeof(int) * 2);
 
     get_shooting_target_inner_loop(read_size, &input, &input_size);
+    errno = (input[0] == -1);
     result[0] = input[0] - ((input[0] == -1) ? 0 : 'A');
     result[1] = ((input[0] == -1) ? -1 : (input[1] - '1'));
     free(input);
@@ -66,8 +68,10 @@ static int player1_turn(board_t *board1, board_t *board2, board_t *ennemy_board)
 
     print_boards(board1, ennemy_board);
     xy = get_shooting_target();
-    if (xy[0] == -1)
+    if (errno == 1) {
+        free(xy);
         return 1;
+    }
     shoot_ennemy_at(board2, ennemy_board, xy[0], xy[1]);
     send_signal(xy[0], xy[1]);
     free(xy);
@@ -89,7 +93,8 @@ void game(board_t board1, board_t board2, int curr_player)
         } else {
             receive_signal(&board1);
         }
-        my_printf("\n");
+        if (!quit)
+            my_printf("\n");
         turn++;
     }
     if (board_has_floating_ships(board1) && board_has_floating_ships(board2))
