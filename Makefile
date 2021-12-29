@@ -14,6 +14,7 @@ SRC			=	src/main.c					\
 				src/board_has_ships.c		\
 				src/game.c					\
 				src/signals.c				\
+				src/player1_turn.c			\
 
 TEST_SRC	=	
 

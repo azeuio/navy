@@ -25,6 +25,8 @@ int print_help(void);
 
 void game(board_t board1, board_t board2, int curr_player);
 
+int player1_turn(board_t *board1, board_t *board2, board_t *ennemy_board);
+
 board_t create_board(void);
 board_t load_board(const char *filename);
 void board_destroy(board_t board);

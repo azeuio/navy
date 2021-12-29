@@ -22,7 +22,7 @@ static char print_ship(int x, int y, board_t board)
 static void print_grid(int x, int y, board_t board)
 {
     char lookup[256] = "01234-6789AB- EF H-bcdef|hI|K+MNOP";
-    enum idx {nothing, y0=3, y1=5, x0=7, x1=11, xmod2=13};
+    enum idx {nothing, y0 = 3, y1 = 5, x0 = 7, x1 = 11, xmod2 = 13};
     char to_print;
 
     to_print = lookup[((y == 0) * y0 + (x == 0) * x0 + (y == 1) * y1 + \
@@ -39,7 +39,6 @@ static void print_grid(int x, int y, board_t board)
         to_print = print_ship((x - 2) / 2, y - 2, board);
     my_printf("%c", to_print);
 }
-
 
 void board_draw(board_t board)
 {

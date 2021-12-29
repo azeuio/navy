@@ -1,5 +1,5 @@
 /*
-** EPITECH PROJECT , 2026
+** EPITECH PROJECT, 2021
 ** navy
 ** File description:
 ** main
@@ -24,7 +24,7 @@ int main(int ac, char **av)
     board_p1 = load_board(av[1]);
     board_p2 = load_board(av[2]);
     if (board_p1 == NULL || board_p2 == NULL) {
-        my_printf("Board of player%d couldn't be loaded. (%s)\n", 
+        my_printf("Board of player%d couldn't be loaded. (%s)\n",
         (board_p2 == NULL) + 1, av[1 + (board_p2 == NULL)]);
         return 84;
     }
