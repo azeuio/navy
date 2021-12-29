@@ -8,6 +8,8 @@
 #ifndef NAVY_H_
 #define NAVY_H_
 
+extern int ennemy_pid;
+
 typedef int** board_t;
 
 enum cell_state {
@@ -23,9 +25,13 @@ enum cell_state {
 
 int print_help(void);
 
-void game(board_t board1, board_t board2, int curr_player);
+// void game(board_t board1, board_t board2, int curr_player);
+void game(board_t my, int curr_player);
 
-int player1_turn(board_t *board1, board_t *board2, board_t *ennemy_board);
+// int player1_turn(board_t *board1, board_t *board2, board_t *ennemy_board);
+int player1_turn(board_t *board1, board_t *ennemy_board);
+
+void signal_handler(int sig);
 
 board_t create_board(void);
 board_t load_board(const char *filename);
@@ -35,7 +41,11 @@ void print_boards(board_t *my, board_t *ennemy_board);
 int board_has_ships(board_t board);
 int board_has_floating_ships(board_t board);
 
-int send_signal(int x, int y);
-int *receive_signal(board_t *board);
+void send_signal(int destination, int n);
+int receive_signal(void);
+int get_connection(void);
+int connect_to(int destination, int pid);
+int send_position(int x, int y);
+int *receive_position(board_t *board);
 
 #endif /* !NAVY_H_ */

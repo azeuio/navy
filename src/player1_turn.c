@@ -12,14 +12,18 @@
 #include <stdlib.h>
 #include <errno.h>
 
-static void shoot_ennemy_at\
-(board_t *ennemy_board, board_t *discovered_board, int x, int y)
+static int shoot_ennemy_at(board_t *discovered_board, int x, int y)
 {
-    SHOOT_AT(*ennemy_board, x, y);
-    if (CELL_IS_HIT(*ennemy_board, x, y))
+    int shot_landed = 0;
+    send_signal(ennemy_pid, x);
+    send_signal(ennemy_pid, y);
+    shot_landed = receive_signal();
+    if (shot_landed)
         (*discovered_board)[y][x] = cell_hit + 1;
     else
         (*discovered_board)[y][x] = cell_hit;
+    my_printf("%c%d: %s\n", 'A' + x, y + 1, shot_landed ? "hit" : "missed");
+    return (shot_landed == 2);
 }
 
 static void get_shooting_target_inner_loop\
@@ -62,18 +66,19 @@ static int *get_shooting_target(void)
     return result;
 }
 
-int player1_turn(board_t *board1, board_t *board2, board_t *ennemy_board)
+int player1_turn(board_t *board1, board_t *ennemy_board)
 {
     int *xy = NULL;
+    int game_ended = 0;
 
     print_boards(board1, ennemy_board);
     xy = get_shooting_target();
     if (errno == 1) {
+        send_signal(ennemy_pid, 10);
         free(xy);
         return 1;
     }
-    shoot_ennemy_at(board2, ennemy_board, xy[0], xy[1]);
-    send_signal(xy[0], xy[1]);
+    game_ended = shoot_ennemy_at(ennemy_board, xy[0], xy[1]);
     free(xy);
-    return 0;
+    return game_ended;
 }
