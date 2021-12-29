@@ -97,8 +97,11 @@ void game(board_t board1, board_t board2, int curr_player)
             my_printf("\n");
         turn++;
     }
-    if (board_has_floating_ships(board1) && board_has_floating_ships(board2))
+    if (board_has_floating_ships(board1) && board_has_floating_ships(board2)) {
+        board_destroy(ennemy_board);
         return;
+    }
     print_boards(&board1, &ennemy_board);
     my_printf("%s won\n", board_has_floating_ships(board1) ? "I" : "Ennemy");
+    board_destroy(ennemy_board);
 }

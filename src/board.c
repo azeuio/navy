@@ -59,12 +59,13 @@ static int is_file_valid(FILE *file)
                 verdict = 0;
         }
         if (my_strlen(buffer + i) >= 7 && buffer[read_size - 1] != '\n')
-            return 0;
+            verdict = 0;
         if (!is_line_valid(buffer + i))
             verdict = 0;
         read_size = getline(&buffer, &bufsize, file);
     }
     fclose(file);
+    free(buffer);
     return verdict;
 }
 
@@ -73,7 +74,7 @@ board_t load_board(const char *filename)
     board_t board = create_board();
     FILE *file = fopen(filename, "r");
     size_t bufsize = 1024;
-    char *buffer = malloc(sizeof(char) * bufsize);
+    char *buffer = NULL;
     int read_size = 0;
     int i = 0;
     int is_vertical = 0;
@@ -81,6 +82,7 @@ board_t load_board(const char *filename)
 
     if (!is_file_valid(fopen(filename, "r")))
         return NULL;
+    buffer = malloc(sizeof(char) * bufsize);
     read_size = getline(&buffer, &bufsize, file);
     while (read_size > 0) {
         for (i = 0; buffer[i] != ':'; i++) {
@@ -93,6 +95,7 @@ board_t load_board(const char *filename)
         }
         read_size = getline(&buffer, &bufsize, file);
     }
+    free(buffer);
     return board;
 }
 
