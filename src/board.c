@@ -26,7 +26,7 @@ board_t create_board(void)
 
 static int is_line_valid(char *line)
 {
-    int len = strlen(line);
+    int len = my_strlen(line);
 
     if (!(len == 7 || len == 8))
         return 0;
