@@ -43,4 +43,5 @@ void game(board_t my, int curr_player)
         my_printf("%s won\n", board_has_floating_ships(my) ? "I" : "Ennemy");
     }
     board_destroy(ennemy_board);
+    board_destroy(my);
 }

@@ -37,7 +37,7 @@ static void get_shooting_target_inner_loop\
         first_loop = 0;
         my_printf("attack: ");
         read_size = getline(input, input_size, stdin);
-        input[read_size] = '\0';
+        input[read_size - 1] = '\0';
         if (my_strcmp((*input), "quit\n") == 0) {
             (*input)[0] = -1;
             break;
@@ -53,7 +53,7 @@ static void get_shooting_target_inner_loop\
 
 static int *get_shooting_target(void)
 {
-    size_t input_size = 6;
+    size_t input_size = 2048;
     char *input = malloc(input_size);
     int read_size = -1;
     int *result = malloc(sizeof(int) * 2);
@@ -79,7 +79,7 @@ int player1_turn(board_t *ennemy_board)
     }
     game_has_ended = shoot_ennemy_at(ennemy_board, xy[0], xy[1]);
     free(xy);
-    return game_has_ended * game_won;
+    return game_has_ended * (int)game_won;
 }
 
 int player2_turn(board_t *my)
