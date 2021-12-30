@@ -32,11 +32,10 @@ enum exit_type {
 
 int print_help(void);
 
-// void game(board_t board1, board_t board2, int curr_player);
 void game(board_t my, int curr_player);
 
-// int player1_turn(board_t *board1, board_t *board2, board_t *ennemy_board);
-int player1_turn(board_t *board1, board_t *ennemy_board);
+int player1_turn(board_t *ennemy_board);
+int player2_turn(board_t *my);
 
 void signal_handler(int sig);
 

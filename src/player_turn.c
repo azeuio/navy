@@ -66,12 +66,11 @@ static int *get_shooting_target(void)
     return result;
 }
 
-int player1_turn(board_t *board1, board_t *ennemy_board)
+int player1_turn(board_t *ennemy_board)
 {
     int *xy = NULL;
     int game_has_ended = 0;
 
-    print_boards(board1, ennemy_board);
     xy = get_shooting_target();
     if (errno == 1) {
         send_signal(ennemy_pid, stop_game);
@@ -81,4 +80,25 @@ int player1_turn(board_t *board1, board_t *ennemy_board)
     game_has_ended = shoot_ennemy_at(ennemy_board, xy[0], xy[1]);
     free(xy);
     return game_has_ended * game_won;
+}
+
+int player2_turn(board_t *my)
+{
+    int x = 0;
+    int y = 0;
+    int shot_landed = 0;
+
+    my_printf("waiting for enemy’s attack...\n");
+    x = receive_signal();
+    if (x == stop_game) {
+        return game_stopped;
+    }
+    y = receive_signal();
+    SHOOT_AT(*my, x, y);
+    shot_landed = CELL_IS_HIT(*my, x, y);
+    my_printf("%c%d: %s\n", 'A' + x, y + 1, \
+    (shot_landed ? "hit" : "missed"));
+    send_signal(ennemy_pid, shot_landed + \
+    !board_has_floating_ships(*my));
+    return 0;
 }
