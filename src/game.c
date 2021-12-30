@@ -8,7 +8,7 @@
 #include "navy.h"
 #include "my.h"
 
-static void main_loop(board_t *my, board_t *ennemy_board, int curr_player)
+static int main_loop(board_t *my, board_t *ennemy_board, int curr_player)
 {
     int quit = 0;
     int turn = 0;
@@ -18,7 +18,7 @@ static void main_loop(board_t *my, board_t *ennemy_board, int curr_player)
 
     while (1) {
         if (!board_has_floating_ships(*my) || quit) {
-            send_signal(ennemy_pid, 10);
+            send_signal(ennemy_pid, stop_game);
             break;
         }
         if ((turn % 2) == (curr_player - 1)) {
@@ -28,8 +28,8 @@ static void main_loop(board_t *my, board_t *ennemy_board, int curr_player)
         } else {
             my_printf("waiting for enemy’s attack...\n");
             x = receive_signal();
-            if (x == 10) {
-                quit = 1;
+            if (x == stop_game) {
+                quit = game_stopped;
                 continue;
             }
             y = receive_signal();
@@ -44,17 +44,21 @@ static void main_loop(board_t *my, board_t *ennemy_board, int curr_player)
             my_printf("\n");
         turn++;
     }
+    return quit;
 }
 
 void game(board_t my, int curr_player)
 {
     board_t ennemy_board = create_board();
+    int exit_type = -1;
 
     my_printf("\n");
     if (curr_player == 2)
         print_boards(&my, &ennemy_board);
-    main_loop(&my, &ennemy_board, curr_player);
-    print_boards(&my, &ennemy_board);
-    my_printf("%s won\n", board_has_floating_ships(my) ? "I" : "Ennemy");
+    exit_type = main_loop(&my, &ennemy_board, curr_player);
+    if (exit_type != game_stopped) {
+        print_boards(&my, &ennemy_board);
+        my_printf("%s won\n", board_has_floating_ships(my) ? "I" : "Ennemy");
+    }
     board_destroy(ennemy_board);
 }

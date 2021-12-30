@@ -17,6 +17,13 @@ enum cell_state {
     cell_hit = 16,
 };
 
+enum exit_type {
+    game_won = 1,
+    game_lost = 2,
+    game_stopped = 3,
+    stop_game = 10,
+};
+
 #define SHOOT_AT(board, x, y) ((board)[(y)][(x)] |= cell_hit)
 #define CELL_IS_HIT(board, x, y) ((board)[(y)][(x)] > cell_hit)
 #define CELL_IS_MISSED(board, x, y) ((board)[(y)][(x)] == cell_hit)

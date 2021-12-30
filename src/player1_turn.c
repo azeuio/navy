@@ -23,7 +23,7 @@ static int shoot_ennemy_at(board_t *discovered_board, int x, int y)
     else
         (*discovered_board)[y][x] = cell_hit;
     my_printf("%c%d: %s\n", 'A' + x, y + 1, shot_landed ? "hit" : "missed");
-    return (shot_landed == 2);
+    return (shot_landed == game_lost);
 }
 
 static void get_shooting_target_inner_loop\
@@ -69,16 +69,16 @@ static int *get_shooting_target(void)
 int player1_turn(board_t *board1, board_t *ennemy_board)
 {
     int *xy = NULL;
-    int game_ended = 0;
+    int game_has_ended = 0;
 
     print_boards(board1, ennemy_board);
     xy = get_shooting_target();
     if (errno == 1) {
-        send_signal(ennemy_pid, 10);
+        send_signal(ennemy_pid, stop_game);
         free(xy);
-        return 1;
+        return game_stopped;
     }
-    game_ended = shoot_ennemy_at(ennemy_board, xy[0], xy[1]);
+    game_has_ended = shoot_ennemy_at(ennemy_board, xy[0], xy[1]);
     free(xy);
-    return game_ended;
+    return game_has_ended * game_won;
 }
