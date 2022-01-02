@@ -49,7 +49,6 @@ static void get_shooting_target_inner_loop\
             continue;
         break;
     }
-    my_printf("intput: '%s'\n", *input);
 }
 
 static int *get_shooting_target(void)

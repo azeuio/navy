@@ -26,8 +26,10 @@ static int player1_start_game(char **av)
 static int player2_start_game(char **av)
 {
     board_t my = load_board(av[2]);
+    int my_pid = getpid();
 
-    connect_to(my_getnbr(av[1]), getpid());
+    my_printf("my_pid: %d\n", my_pid);
+    connect_to(my_getnbr(av[1]), my_pid);
     game(my, 2);
     return 0;
 }
