@@ -40,7 +40,8 @@ int main(int ac, char **av)
         return 84;
     signal(SIGUSR1, signal_handler);
     signal(SIGUSR2, signal_handler);
-    if (ac == 2 && my_strcmp(av[1], "-h") == 0)
+    if (ac == 2 && (my_strcmp(av[1], "-h") == 0 || \
+    my_strcmp(av[1], "--help") == 0))
         return print_help();
     if (ac == 2)
         player1_start_game(av);
