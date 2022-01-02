@@ -5,6 +5,9 @@
 ** my_put_nbr_base_unsigned
 */
 
+#include "my.h"
+#include <stdlib.h>
+
 static void fill(int result[], int value, int len)
 {
     for (int i = 0; i < len; i++) {

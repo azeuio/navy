@@ -39,6 +39,7 @@ SRC			=	src/my_putchar.c						\
 				src/my_strncat.c						\
 				src/get_nbr_len_in_base.c				\
 				src/my_putnbr_base.c					\
+				src/my_put_nbr_base_unsigned.c			\
 				src/my_str_to_word_array.c				\
 				src/my_strdup.c							\
 				src/my_isalpha.c						\
