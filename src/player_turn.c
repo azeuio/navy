@@ -49,6 +49,7 @@ static void get_shooting_target_inner_loop\
             continue;
         break;
     }
+    my_printf("intput: '%s'\n", *input);
 }
 
 static int *get_shooting_target(void)
@@ -56,12 +57,13 @@ static int *get_shooting_target(void)
     size_t input_size = 2048;
     char *input = malloc(input_size);
     int read_size = -1;
-    int *result = malloc(sizeof(int) * 2);
+    int *result = NULL;
 
     get_shooting_target_inner_loop(read_size, &input, &input_size);
+    result = malloc(sizeof(int) * 2);
     errno = (input[0] == -1);
-    result[0] = input[0] - ((input[0] == -1) ? 0 : 'A');
-    result[1] = ((input[0] == -1) ? -1 : (input[1] - '1'));
+    result[0] = input[0] - 'A';
+    result[1] = input[1] - '1';
     free(input);
     return result;
 }
