@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <signal.h>
 
-static int player1_start_game(char **av)
+static int player1_start_game(const char **av)
 {
     board_t my = load_board(av[1]);
 
@@ -23,7 +23,7 @@ static int player1_start_game(char **av)
     return 0;
 }
 
-static int player2_start_game(char **av)
+static int player2_start_game(const char **av)
 {
     board_t my = load_board(av[2]);
     int my_pid = getpid();
@@ -34,7 +34,7 @@ static int player2_start_game(char **av)
     return 0;
 }
 
-static int handle_args_error(int ac, char **av)
+static int handle_args_error(const int ac, const char **av)
 {
     if (!(2 <= ac && ac <= 3)) {
         my_printf("%s: Invalid number of arguments", av[0]);
@@ -47,14 +47,14 @@ static int handle_args_error(int ac, char **av)
 static int av_contains(const char **av, const char *str)
 {
     for (int i = 0; av[i] != NULL; i++) {
-        if (my_strstr(av[i], str) == 0)
+        if (my_strstr((char *)av[i], str) == 0)
             return 1;
     }
     my_printf("hi\n");
     return 0;
 }
 
-int main(int ac, char **av)
+int main(const int ac, const char **av)
 {
     if ((av_contains(av, "-h") || av_contains(av, "--help")))
         return print_help();
