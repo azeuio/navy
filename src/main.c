@@ -44,17 +44,26 @@ static int handle_args_error(int ac, char **av)
     return 0;
 }
 
+static int av_contains(const char **av, const char *str)
+{
+    for (int i = 0; av[i] != NULL; i++) {
+        if (my_strstr(av[i], str) == 0)
+            return 1;
+    }
+    my_printf("hi\n");
+    return 0;
+}
+
 int main(int ac, char **av)
 {
+    if ((av_contains(av, "-h") || av_contains(av, "--help")))
+        return print_help();
     if (handle_args_error(ac, av)) {
-        my_printf("Try: '%s -h' for more information\n", av[0]);
+        my_printf("Try: '%s --help' for more information\n", av[0]);
         return 84;
     }
     signal(SIGUSR1, signal_handler);
     signal(SIGUSR2, signal_handler);
-    if (ac == 2 && (my_strcmp(av[1], "-h") == 0 || \
-    my_strcmp(av[1], "--help") == 0))
-        return print_help();
     if (ac == 2)
         player1_start_game(av);
     else if (ac == 3)
