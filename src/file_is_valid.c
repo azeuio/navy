@@ -9,12 +9,12 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <stdlib.h>
 #include "navy.h"
+#include "my.h"
 
-static int line_is_valid(char *line)
+static int line_is_valid(char *line, int len)
 {
-    int len = my_strlen(line);
-
     if (!(len == 7 || len == 8))
         return 0;
     if (!(my_isnum(line[0]) && line[1] == ':'))
@@ -45,11 +45,12 @@ int file_is_valid(const char *filename)
     char *buffer = NULL;
     ssize_t read_size;
 
-    if (file == NULL)
+    if (file == NULL) {
         return close_and_return(0, file, buffer);
+    }
     read_size = getline(&buffer, &zero, file);
     while (read_size != -1 && buffer != NULL) {
-        if (!line_is_valid(buffer)) {
+        if (!line_is_valid(buffer, read_size)) {
             return close_and_return(0, file, buffer);
         }
         free(buffer);
@@ -57,7 +58,5 @@ int file_is_valid(const char *filename)
         zero = 0;
         read_size = getline(&buffer, &zero, file);
     }
-    if (errno != 0)
-        return close_and_return(0, file, buffer);
     return close_and_return(1, file, buffer);
 }

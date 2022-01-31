@@ -21,6 +21,7 @@ SRC			=	src/main.c					\
 
 TEST_SRC	=	tests/av_contains.c				\
 				tests/handle_args_error.c		\
+				tests/file_is_valid.c			\
 
 OBJ			=	$(SRC:.c=.o)
 
