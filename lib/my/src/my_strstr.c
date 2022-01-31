@@ -14,7 +14,7 @@ char *my_strstr(char *str, char const *to_find)
 {
     int str_len = my_strlen(str);
     int to_find_len = my_strlen(to_find);
-    
+
     for (int i = 0; i < str_len; i++) {
         if (my_strncmp(str+i, to_find, to_find_len) == 0)
             return (str+i);

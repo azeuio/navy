@@ -6,22 +6,19 @@
 */
 
 #include "my.h"
+#include <stddef.h>
 
-int get_word_count(char const *str)
+int get_word_count(const char *str, const char *separators)
 {
+    int word_count = 1;
+    int len = my_strlen(str);
     int i = 0;
-    int in_word = 0;
-    int result = 0;
 
-    while (str[i] != '\0') {
-        if (!my_isalnum(str[i]) && in_word) {
-            in_word = 0;
-        }
-        if (my_isalnum(str[i]) && !in_word) {
-            in_word = 1;
-            result++;
-        }
-        i++;
+    if (len == 0)
+        return 0;
+    for (i = 0; i < len; i++) {
+        if (my_strchr(separators, str[i]) != NULL)
+            word_count++;
     }
-    return (result);
+    return word_count;
 }

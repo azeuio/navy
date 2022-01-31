@@ -13,8 +13,7 @@ static void add_zeros_switch\
 {
     int h_ff = n != 0 ? format[hash_fflag] * (format[precision_fflag] == 0): 0;
 
-    switch (specifier)
-    {
+    switch (specifier) {
         case 'd':
             print_x_char(size - get_nbr_len_in_base(n, 10), '0');
             break;

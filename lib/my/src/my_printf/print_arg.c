@@ -13,8 +13,7 @@
 static int printf_nbr_switch\
 (char *str, int specifer_idx, unsigned long long n)
 {
-    switch (str[specifer_idx])
-    {
+    switch (str[specifer_idx]) {
         case 'o':
             my_put_nbr_base_unsigned_ull(n, "01234567");
             return 0;
@@ -73,8 +72,7 @@ static void printf_nbr(char *str, int *i, int specifer_idx, va_list *ap)
 static void print_str_or_nbr_arg\
 (int specifier_idx, char *str, int *i, va_list *ap)
 {
-    switch (str[specifier_idx])
-    {
+    switch (str[specifier_idx]) {
         case 's':
             my_putstr(va_arg(*ap, char *));
             break;
@@ -86,7 +84,7 @@ static void print_str_or_nbr_arg\
             break;
         case 'p':
             my_putstr("0x");
-            my_put_nbr_base_unsigned_ull(va_arg(*ap, long long),\
+            my_put_nbr_base_unsigned_ull(va_arg(*ap, long long), \
             "0123456789abcdef");
             break;
         default:

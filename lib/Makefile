@@ -18,4 +18,3 @@ re:
 	$(MAKE) -C my re
 
 .PHONY:	all clean fclean re
-

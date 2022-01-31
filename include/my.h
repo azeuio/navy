@@ -5,8 +5,13 @@
 ** my lib header
 */
 
-#ifndef MY_LIB_H_
-#define MY_LIB_H_
+#pragma once
+#include <stddef.h>
+#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+#define MAX(a, b) (((a) > (b)) ? (a) : (b))
+#define ABS(a) (((a) < 0) ? (-(a)) : (a))
+#define POW(x, p) (my_compute_power_rec((x), (p)))
+#define SQRT(x) (my_compute_square_root((x)))
 
 void my_putchar(char);
 int my_isneg(int);
@@ -41,7 +46,8 @@ char *my_strcat(char *, char const *);
 char *my_strncat(char *, char const *, int);
 int get_nbr_len_in_base(int, int const);
 void my_putnbr_base(int, char const *);
-char **my_str_to_word_array(char const *);
+char **my_str_to_word_array(char const *str, const char *separators);
+int my_word_array_destroy(char ***word_array);
 char *my_strdup(char const *);
 int my_isalpha(char);
 int my_isnum(char);
@@ -49,10 +55,12 @@ int my_isalnum(char);
 int my_islower(char);
 int my_isupper(char);
 int my_isprint(char);
-int get_word_count(char const *);
+int get_word_count(const char *str, const char *separators);
 int my_printf(char *, ...);
-void my_put_nbr_base_unsigned_ull(unsigned long long nbr, char const *base_str);
+void my_put_nbr_base_unsigned_ull\
+(unsigned long long nbr, char const *base_str);
 void my_put_nbr_base_unsigned_uh(unsigned short nbr, char const *base_str);
 int get_nbr_len_in_base_unsigned(unsigned long long nbr, int const base);
-
-#endif
+int *get_powers_of_base_unsigned_ull(unsigned long long n, int base);
+int *get_powers_of_base_unsigned_uh(unsigned short n, int base);
+char *my_strchr(const char *str, const int c);

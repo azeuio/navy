@@ -33,9 +33,9 @@ static int get_int_lenght(int n)
 void print_nbr(int nb)
 {
     int truncated;
-    
-    for (int l = get_int_lenght(nb) - 1; l >= 0; l--) {
-        truncated = nb / my_pow(10, l);
+
+    for (int len = get_int_lenght(nb) - 1; len >= 0; len--) {
+        truncated = nb / my_pow(10, len);
         my_putchar('0' + truncated % 10);
     }
 }

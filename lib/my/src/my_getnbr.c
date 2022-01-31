@@ -12,7 +12,7 @@ int is_more_than_inf(char const *num, int int_start, int int_end, int is_neg)
     char *max = "2147483647";
     char *min = "2147483648";
     int max_len = my_strlen(max);
-    
+
     if (int_end - int_start > max_len)
         return (1);
     if (int_end - int_start < max_len)
@@ -21,7 +21,7 @@ int is_more_than_inf(char const *num, int int_start, int int_end, int is_neg)
         return (0);
     if (my_strcmp((num + int_start), min) == 0 && is_neg == 1)
         return (0);
-    for (int i = int_start; i < int_end; i++) { 
+    for (int i = int_start; i < int_end; i++) {
         if (num[i] < max[i - int_start])
             return (0);
     }
@@ -52,7 +52,7 @@ static void get_int_range(char const *str, int *start, int *end, int *is_neg)
 static void transform_str_in_nbr(char const *str, int *n, int start, int end)
 {
     int len = end - start;
-    
+
     for (int i = start; i <= end; i++) {
         *n += my_compute_power_rec(10, len - 1) * (str[i] - '0');
         len--;

@@ -17,9 +17,9 @@ int my_strcmp(char const *s1, char const *s2)
 
     if (s1 == NULL && s2 != NULL)
         return (-s2[0]);
-    else if (s1 != NULL && s2 == NULL)
+    if (s1 != NULL && s2 == NULL)
         return (s1[0]);
-    else if (s1 == NULL && s2 == NULL)
+    if (s1 == NULL && s2 == NULL)
         return (0);
     len1 = my_strlen(s1);
     len2 = my_strlen(s2);

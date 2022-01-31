@@ -21,8 +21,7 @@ char specifier, char c)
 {
     int h_ff = (n != 0 ? format[hash_fflag] : 0);
 
-    switch (specifier)
-    {
+    switch (specifier) {
         case 'd':
             print_x_char(get_padding_size(n, 10, format), c);
             break;

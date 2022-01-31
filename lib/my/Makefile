@@ -14,7 +14,6 @@ SRC			=	src/my_putchar.c						\
 				src/my_putstr.c							\
 				src/my_strlen.c							\
 				src/my_getnbr.c							\
-				src/my_sort_int_array.c					\
 				src/my_compute_power_rec.c				\
 				src/my_compute_square_root.c			\
 				src/my_is_prime.c						\
@@ -34,7 +33,6 @@ SRC			=	src/my_putchar.c						\
 				src/my_str_isupper.c					\
 				src/my_str_isprintable.c				\
 				src/my_showstr.c						\
-				src/my_showmem.c						\
 				src/my_strcat.c							\
 				src/my_strncat.c						\
 				src/get_nbr_len_in_base.c				\
@@ -55,15 +53,7 @@ SRC			=	src/my_putchar.c						\
 				src/my_printf/add_sign_and_zeroes.c		\
 				src/my_printf/add_prefix_suffix.c		\
 				src/my_printf/add_padding.c				\
-				src/ll_create.c							\
-				src/ll_create_from_int_arr.c			\
-				src/ll_insert.c							\
-				src/ll_remove.c							\
-				src/ll_append.c							\
-				src/ll_cmp.c							\
-				src/get_ll_len.c						\
-				src/ll_destroy.c						\
-				src/ll_print.c							\
+				src/my_strchr.c							\
 
 
 TEST_SRC	=	tests/my_putchar.c				\
@@ -73,7 +63,6 @@ TEST_SRC	=	tests/my_putchar.c				\
 				tests/my_putstr.c				\
 				tests/my_strlen.c				\
 				tests/my_getnbr.c				\
-				tests/my_sort_int_array.c		\
 				tests/my_compute_power_rec.c	\
 				tests/my_compute_square_root.c	\
 				tests/my_is_prime.c				\
@@ -103,20 +92,18 @@ TEST_SRC	=	tests/my_putchar.c				\
 				tests/my_islower.c				\
 				tests/my_isupper.c				\
 				tests/get_word_count.c			\
-				tests/my_printf.c				\
-				tests/ll.c						\
+				tests/my_printf.c
 
 
 CC			=	gcc
 
 CFLAGS		=	-Wall -Wextra -I./include
 
-LDFLAGS		=	
+LDFLAGS		=
 
 OBJ			=	$(SRC:.c=.o)
 
 HEADERS		=	include/my.h	\
-			include/ll.h
 
 ROOT		=	../..
 
@@ -145,7 +132,7 @@ fclean_tests:	clean_tests
 
 tests_run:	CFLAGS += --coverage
 tests_run:	LDFLAGS += -lcriterion
-tests_run:	clean_tests $(OBJ)
+tests_run:	$(OBJ)
 	$(CC) -o unit_test $(OBJ) $(TEST_SRC) $(CFLAGS) $(LDFLAGS)
 	./unit_test
 

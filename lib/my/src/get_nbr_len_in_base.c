@@ -14,7 +14,7 @@ int get_nbr_len_in_base(int nbr, int const base)
     int i = 0;
     int len = 1;
 
-    if(nbr == 0)
+    if (nbr == 0)
         return (1);
     while (1) {
         nbr = nbr / base;
@@ -32,7 +32,7 @@ int get_nbr_len_in_base_unsigned(unsigned long long nbr, int const base)
     int i = 0;
     int len = 1;
 
-    if(nbr == 0)
+    if (nbr == 0)
         return (1);
     while (1) {
         nbr = nbr / base;
