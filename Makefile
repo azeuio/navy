@@ -17,6 +17,7 @@ SRC			=	src/main.c					\
 				src/player_turn.c			\
 				src/av_contains.c			\
 				src/handle_args_error.c		\
+				src/file_is_valid.c			\
 
 TEST_SRC	=	tests/av_contains.c				\
 				tests/handle_args_error.c		\
@@ -65,6 +66,9 @@ coverage:
 	gcovr --branch
 
 re:	fclean all
+
+debug:	CFLAGS += -g
+debug:	re
 
 .PHONY:	all $(NAME) lib clean fclean re clean_tests fclean_tests \
 tests_run coverage
