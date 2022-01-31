@@ -7,17 +7,19 @@
 
 NAME		=	navy
 
-SRC			=	src/main.c				\
-				src/print_help.c		\
-				src/signals.c			\
-				src/game.c				\
-				src/board.c				\
-				src/board_has_ships.c	\
-				src/board_draw.c		\
-				src/player_turn.c		\
-				src/av_contains.c		\
+SRC			=	src/main.c					\
+				src/print_help.c			\
+				src/signals.c				\
+				src/game.c					\
+				src/board.c					\
+				src/board_has_ships.c		\
+				src/board_draw.c			\
+				src/player_turn.c			\
+				src/av_contains.c			\
+				src/handle_args_error.c		\
 
-TEST_SRC	=	tests/av_contains.c		\
+TEST_SRC	=	tests/av_contains.c				\
+				tests/handle_args_error.c		\
 
 OBJ			=	$(SRC:.c=.o)
 
@@ -45,10 +47,10 @@ fclean:	clean fclean_tests
 	rm -f $(NAME)
 
 clean_tests:
-	find . -name \*.gc\* -delete
 	rm -f $(OBJ)
 
 fclean_tests:	clean_tests
+	find . -name \*.gc\* -delete
 	rm -f unit_tests
 
 tests_run:	CFLAGS += --coverage
