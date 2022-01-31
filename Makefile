@@ -37,14 +37,15 @@ lib:
 
 clean:	clean_tests
 	$(MAKE) -C lib clean
-	rm -f **/*.o
+	rm -f $(OBJ)
 
 fclean:	clean fclean_tests
 	$(MAKE) -C lib fclean
+	find . -name \*.o -delete
 	rm -f $(NAME)
 
 clean_tests:
-	rm -f ./*.gc*
+	find . -name \*.gc\* -delete
 	rm -f $(OBJ)
 
 fclean_tests:	clean_tests
@@ -56,6 +57,7 @@ tests_run:	lib $(OBJ)
 	$(CC) -o unit_test $(filter-out src/main.o, $(OBJ)) \
 	$(TEST_SRC) $(CFLAGS) $(LDFLAGS)
 	./unit_test
+	$(MAKE) clean_tests
 
 coverage:
 	gcovr --branch
