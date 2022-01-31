@@ -34,10 +34,22 @@ static int player2_start_game(char **av)
     return 0;
 }
 
+static int handle_args_error(int ac, char **av)
+{
+    if (!(2 <= ac && ac <= 3)) {
+        my_printf("%s: Invalid number of arguments", av[0]);
+        my_printf(" (got %d, expected 2 or 3).\n", ac);
+        return 1;
+    }
+    return 0;
+}
+
 int main(int ac, char **av)
 {
-    if (ac < 2)
+    if (handle_args_error(ac, av)) {
+        my_printf("Try: '%s -h' for more information\n", av[0]);
         return 84;
+    }
     signal(SIGUSR1, signal_handler);
     signal(SIGUSR2, signal_handler);
     if (ac == 2 && (my_strcmp(av[1], "-h") == 0 || \
