@@ -15,8 +15,9 @@ SRC			=	src/main.c				\
 				src/board_has_ships.c	\
 				src/board_draw.c		\
 				src/player_turn.c		\
+				src/av_contains.c		\
 
-TEST_SRC	=
+TEST_SRC	=	tests/av_contains.c		\
 
 OBJ			=	$(SRC:.c=.o)
 
