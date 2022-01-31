@@ -31,6 +31,7 @@ enum exit_type {
 ((board)[(y)][(x)] < cell_hit && (board)[(y)][(x)] > cell_empty)
 
 int print_help(void);
+int av_contains(const char **av, const char *str);
 
 void game(board_t my, int curr_player);
 

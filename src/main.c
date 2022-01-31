@@ -44,16 +44,6 @@ static int handle_args_error(const int ac, const char **av)
     return 0;
 }
 
-static int av_contains(const char **av, const char *str)
-{
-    for (int i = 0; av[i] != NULL; i++) {
-        if (my_strstr((char *)av[i], str) == 0)
-            return 1;
-    }
-    my_printf("hi\n");
-    return 0;
-}
-
 int main(const int ac, const char **av)
 {
     if ((av_contains(av, "-h") || av_contains(av, "--help")))
