@@ -40,7 +40,7 @@ void game(board_t my, int curr_player)
     exit_type = main_loop(&my, &ennemy_board, curr_player);
     if (exit_type != game_stopped) {
         print_boards(&my, &ennemy_board);
-        my_printf("%s won\n", board_has_floating_ships(my) ? "I" : "Ennemy");
+        my_printf("%s won\n", (exit_type == game_won) ? "I" : "Ennemy");
     }
     board_destroy(ennemy_board);
     board_destroy(my);
