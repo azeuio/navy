@@ -34,7 +34,10 @@ static int player2_start_game(const char **av)
     sigaction(SIGUSR1, &act, NULL);
     sigaction(SIGUSR2, &act, NULL);
     my_printf("my_pid: %d\n", my_pid);
-    connect_to(my_getnbr(av[1]));
+    if (connect_to(my_getnbr(av[1])) == 84) {
+        board_destroy(my);
+        return 84;
+    }
     game(my, 2);
     return 0;
 }

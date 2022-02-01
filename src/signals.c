@@ -77,8 +77,12 @@ int wait_for_connection(void)
 
 int connect_to(int destination)
 {
+    int error_while_connecting = kill(destination, SIGUSR1);
+    if (error_while_connecting) {
+        my_printf("connection failed\n");
+        return 84;
+    }
     ennemy_pid = destination;
-    kill(destination, SIGUSR1);
     receive_signal();
     my_printf("successfully connected\n");
     return 0;
