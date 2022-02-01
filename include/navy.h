@@ -41,7 +41,7 @@ int player2_turn(board_t *my);
 
 void signal_handler(int sig);
 
-board_t create_board(void);
+board_t create_empty_board(void);
 board_t load_board(const char *filename);
 void board_destroy(board_t board);
 void board_draw(board_t board);

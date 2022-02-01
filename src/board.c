@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <stddef.h>
 
-board_t create_board(void)
+board_t create_empty_board(void)
 {
     board_t board = malloc(sizeof(int *) * 8);
 
@@ -59,7 +59,7 @@ static void load_line(board_t *board, char *line)
 
 board_t load_board(const char *filename)
 {
-    board_t board = create_board();
+    board_t board = create_empty_board();
     FILE *file = fopen(filename, "r");
     size_t bufsize = 1024;
     char *buffer = NULL;

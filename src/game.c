@@ -33,7 +33,7 @@ static int main_loop(board_t *my, board_t *ennemy_board, int curr_player)
 
 void game(board_t my, int curr_player)
 {
-    board_t ennemy_board = create_board();
+    board_t ennemy_board = create_empty_board();
     int exit_type = -1;
 
     my_printf("\n");
