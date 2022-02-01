@@ -58,7 +58,7 @@ fclean_tests:	clean_tests
 
 tests_run:	CFLAGS += --coverage
 tests_run:	LDFLAGS += -lcriterion
-tests_run:	lib $(OBJ)
+tests_run:	fclean_tests lib $(OBJ)
 	$(CC) -o unit_test $(filter-out src/main.o, $(OBJ)) \
 	$(TEST_SRC) $(CFLAGS) $(LDFLAGS)
 	./unit_test
