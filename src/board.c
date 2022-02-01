@@ -78,6 +78,7 @@ board_t load_board(const char *filename)
         read_size = getline(&buffer, &bufsize, file);
     }
     free(buffer);
+    fclose(file);
     return board;
 }
 
