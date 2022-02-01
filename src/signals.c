@@ -53,7 +53,8 @@ int receive_signal(void)
 
 void set_ennemy_pid(int sig, siginfo_t *info, void *context)
 {
-    ennemy_pid = info->si_pid;
+    if (sig == SIGUSR1)
+        ennemy_pid = info->si_pid;
 }
 
 int wait_for_connection(void)
@@ -71,6 +72,7 @@ int wait_for_connection(void)
     sigaction(SIGUSR1, &act, NULL);
     sigaction(SIGUSR2, &act, NULL);
     send_signal(ennemy_pid, 1);
+    return 0;
 }
 
 int connect_to(int destination)
