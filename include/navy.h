@@ -52,8 +52,8 @@ int board_has_floating_ships(board_t board);
 
 void send_signal(int destination, int n);
 int receive_signal(void);
-int get_connection(void);
-int connect_to(int destination, int pid);
+int wait_for_connection(void);
+int connect_to(int destination);
 int send_position(int x, int y);
 int *receive_position(board_t *board);
 

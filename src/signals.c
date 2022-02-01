@@ -7,6 +7,7 @@
 
 #include "my.h"
 #include "navy.h"
+#define _GNU_SOURCE
 #include <signal.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -50,19 +51,32 @@ int receive_signal(void)
     return last_cntr;
 }
 
-int get_connection(void)
+void set_ennemy_pid(int sig, siginfo_t *info, void *context)
 {
-    int connection = receive_signal();
-
-    send_signal(connection, 42);
-    ennemy_pid = connection;
-    return connection;
+    ennemy_pid = info->si_pid;
 }
 
-int connect_to(int destination, int pid)
+int wait_for_connection(void)
+{
+    struct sigaction act = {0};
+
+    sigemptyset(&act.sa_mask);
+    act.sa_flags = SA_SIGINFO | SA_RESTART;
+    act.sa_sigaction = set_ennemy_pid;
+    sigaction(SIGUSR1, &act, NULL);
+    pause();
+    sigemptyset(&act.sa_mask);
+    act.sa_sigaction = NULL;
+    act.sa_handler = signal_handler;
+    sigaction(SIGUSR1, &act, NULL);
+    sigaction(SIGUSR2, &act, NULL);
+    send_signal(ennemy_pid, 1);
+}
+
+int connect_to(int destination)
 {
     ennemy_pid = destination;
-    send_signal(destination, pid);
+    kill(destination, SIGUSR1);
     receive_signal();
     my_printf("successfully connected\n");
     return 0;
