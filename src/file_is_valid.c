@@ -49,6 +49,8 @@ int file_is_valid(const char *filename)
         return close_and_return(0, file, buffer);
     }
     read_size = getline(&buffer, &zero, file);
+    if (my_strlen(buffer) == 0)
+        return close_and_return(0, file, buffer);
     while (read_size != -1 && buffer != NULL) {
         if (!line_is_valid(buffer, read_size)) {
             return close_and_return(0, file, buffer);

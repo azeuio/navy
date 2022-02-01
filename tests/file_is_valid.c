@@ -27,5 +27,5 @@ Test(file_is_valid, empty_file)
 {
     int got = file_is_valid("tests/boards/empty");
 
-    cr_assert_eq(got, 1, "expected 1 got %d\0", got);
+    cr_assert_eq(got, 0, "expected 1 got %d\0", got);
 }
