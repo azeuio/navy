@@ -5,8 +5,7 @@
 ** navy
 */
 
-#ifndef NAVY_H_
-#define NAVY_H_
+#pragma once
 
 extern int ennemy_pid;
 
@@ -56,5 +55,3 @@ int wait_for_connection(void);
 int connect_to(int destination);
 int send_position(int x, int y);
 int *receive_position(board_t *board);
-
-#endif /* !NAVY_H_ */
