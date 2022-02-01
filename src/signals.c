@@ -14,7 +14,7 @@
 
 static int cntr = 0;
 static int last_cntr = 0;
-int ennemy_pid = -1;
+int enemy_pid = -1;
 
 void signal_handler(int sig)
 {
@@ -51,10 +51,10 @@ int receive_signal(void)
     return last_cntr;
 }
 
-void set_ennemy_pid(int sig, siginfo_t *info, void *context)
+void set_enemy_pid(int sig, siginfo_t *info, void *context)
 {
     if (sig == SIGUSR1)
-        ennemy_pid = info->si_pid;
+        enemy_pid = info->si_pid;
 }
 
 int wait_for_connection(void)
@@ -63,7 +63,7 @@ int wait_for_connection(void)
 
     sigemptyset(&act.sa_mask);
     act.sa_flags = SA_SIGINFO | SA_RESTART;
-    act.sa_sigaction = set_ennemy_pid;
+    act.sa_sigaction = set_enemy_pid;
     sigaction(SIGUSR1, &act, NULL);
     pause();
     sigemptyset(&act.sa_mask);
@@ -71,7 +71,7 @@ int wait_for_connection(void)
     act.sa_handler = signal_handler;
     sigaction(SIGUSR1, &act, NULL);
     sigaction(SIGUSR2, &act, NULL);
-    send_signal(ennemy_pid, 1);
+    send_signal(enemy_pid, 1);
     return 0;
 }
 
@@ -83,7 +83,7 @@ int connect_to(int destination)
         my_printf("connection failed\n");
         return 84;
     }
-    ennemy_pid = destination;
+    enemy_pid = destination;
     receive_signal();
     my_printf("successfully connected\n");
     return 0;

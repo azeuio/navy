@@ -50,11 +50,11 @@ void board_draw(board_t board)
     }
 }
 
-void print_boards(board_t *my, board_t *ennemy_board)
+void print_boards(board_t *my, board_t *enemy_board)
 {
     my_printf("my positions:\n");
     board_draw(*my);
-    my_printf("\nennemy's positions:\n");
-    board_draw(*ennemy_board);
+    my_printf("\nenemy's positions:\n");
+    board_draw(*enemy_board);
     my_printf("\n");
 }

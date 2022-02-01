@@ -19,7 +19,7 @@ static int player1_start_game(const char **av)
     my_printf("my_pid: %d\n", getpid());
     my_printf("waiting for enemy connection...\n\n");
     wait_for_connection();
-    my_printf("ennemy connected\n");
+    my_printf("enemy connected\n");
     game(my, 1);
     return 0;
 }

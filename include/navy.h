@@ -7,7 +7,7 @@
 
 #pragma once
 
-extern int ennemy_pid;
+extern int enemy_pid;
 
 typedef int** board_t;
 
@@ -36,7 +36,7 @@ int file_is_valid(const char *filename);
 
 void game(board_t my, int curr_player);
 
-int my_turn(board_t *ennemy_board);
+int my_turn(board_t *enemy_board);
 int other_player_turn(board_t *my);
 
 void signal_handler(int sig);
@@ -45,7 +45,7 @@ board_t create_empty_board(void);
 board_t load_board(const char *filename);
 void board_destroy(board_t board);
 void board_draw(board_t board);
-void print_boards(board_t *my, board_t *ennemy_board);
+void print_boards(board_t *my, board_t *enemy_board);
 int board_has_ships(board_t board);
 int board_has_floating_ships(board_t board);
 
