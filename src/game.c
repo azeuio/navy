@@ -21,9 +21,9 @@ static int main_loop(board_t *my, board_t *ennemy_board, int curr_player)
         if (turn % 2 == 0)
             print_boards(my, ennemy_board);
         if ((turn % 2) == (curr_player - 1))
-            quit = player1_turn(ennemy_board);
+            quit = my_turn(ennemy_board);
         else
-            quit = player2_turn(my);
+            quit = other_player_turn(my);
         if (!quit)
             my_printf("\n");
         turn++;

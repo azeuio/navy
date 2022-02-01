@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2021
 ** navy
 ** File description:
-** player1_turn
+** my_turn
 */
 
 #include "navy.h"
@@ -67,7 +67,7 @@ static int *get_shooting_target(void)
     return result;
 }
 
-int player1_turn(board_t *ennemy_board)
+int my_turn(board_t *ennemy_board)
 {
     int *xy = NULL;
     int game_has_ended = 0;
@@ -83,7 +83,7 @@ int player1_turn(board_t *ennemy_board)
     return game_has_ended * (int)game_won;
 }
 
-int player2_turn(board_t *my)
+int other_player_turn(board_t *my)
 {
     int x = 0;
     int y = 0;

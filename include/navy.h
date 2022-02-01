@@ -36,8 +36,8 @@ int file_is_valid(const char *filename);
 
 void game(board_t my, int curr_player);
 
-int player1_turn(board_t *ennemy_board);
-int player2_turn(board_t *my);
+int my_turn(board_t *ennemy_board);
+int other_player_turn(board_t *my);
 
 void signal_handler(int sig);
 
