@@ -43,7 +43,7 @@ int word_count, int *word_len_array, char ***result, const char *str)
     int str_idx = 0;
 
     for (int wrd_idx = 0; wrd_idx < word_count; wrd_idx++) {
-        (*result)[wrd_idx] = malloc(sizeof(char) * \
+        (*result)[wrd_idx] = malloc(sizeof(char) *
         word_len_array[wrd_idx] + 1);
         for (int j = 0; j < word_len_array[wrd_idx]; j++) {
             (*result)[wrd_idx][j] = str[str_idx + wrd_idx];

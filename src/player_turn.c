@@ -44,7 +44,7 @@ static void get_shooting_target_inner_loop\
         }
         if (read_size != 3)
             continue;
-        if (!((*input)[0] >= 'A' && (*input)[0] <= 'H') || \
+        if (!((*input)[0] >= 'A' && (*input)[0] <= 'H') ||
         !((*input)[1] >= '1' && (*input)[1] <= '8'))
             continue;
         break;
@@ -97,9 +97,9 @@ int player2_turn(board_t *my)
     y = receive_signal();
     SHOOT_AT(*my, x, y);
     shot_landed = CELL_IS_HIT(*my, x, y);
-    my_printf("%c%d: %s\n", 'A' + x, y + 1, \
+    my_printf("%c%d: %s\n", 'A' + x, y + 1,
     (shot_landed ? "hit" : "missed"));
-    send_signal(ennemy_pid, shot_landed + \
+    send_signal(ennemy_pid, shot_landed +
     !board_has_floating_ships(*my));
     return 0;
 }

@@ -37,8 +37,8 @@ void my_put_nbr_base_unsigned_ull(unsigned long long nbr, char const *base_str)
         my_putchar('0');
         return;
     }
-    int *powers_of_base = \
-    get_powers_of_base_unsigned_ull(nbr, my_strlen(base_str));
+    int *powers_of_base = get_powers_of_base_unsigned_ull(
+    nbr, my_strlen(base_str));
     int i = 0;
     while (powers_of_base[i] != -1) {
         my_putchar(base_str[powers_of_base[i]]);
@@ -68,8 +68,8 @@ void my_put_nbr_base_unsigned_uh(unsigned short nbr, char const *base_str)
         my_putchar('0');
         return;
     }
-    int *powers_of_base = \
-    get_powers_of_base_unsigned_uh(nbr, my_strlen(base_str));
+    int *powers_of_base = get_powers_of_base_unsigned_uh(
+    nbr, my_strlen(base_str));
     int i = 0;
     while (powers_of_base[i] != -1) {
         my_putchar(base_str[powers_of_base[i]]);

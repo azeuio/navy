@@ -25,7 +25,7 @@ static void print_grid(int x, int y, board_t board)
     enum idx {nothing, y0 = 3, y1 = 5, x0 = 7, x1 = 11, xmod2 = 13};
     char to_print;
 
-    to_print = lookup[((y == 0) * y0 + (x == 0) * x0 + (y == 1) * y1 + \
+    to_print = lookup[((y == 0) * y0 + (x == 0) * x0 + (y == 1) * y1 +
     (x == 1) * x1 + (x % 2) * xmod2) % my_strlen(lookup)];
     if (to_print == '7')
         to_print = '0' + (y - 1);

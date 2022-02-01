@@ -31,7 +31,7 @@ static void add_zeros_switch\
 
 void add_zeros(unsigned long long n, char *format, char specifier)
 {
-    int size = (format[zero_fflag] == 1 && format[precision_fflag] == 0) ? \
+    int size = (format[zero_fflag] == 1 && format[precision_fflag] == 0) ?
     format[width_fflags] : format[precision_fflag];
 
     if (size == 0)

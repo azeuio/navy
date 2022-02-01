@@ -84,7 +84,7 @@ static void print_str_or_nbr_arg\
             break;
         case 'p':
             my_putstr("0x");
-            my_put_nbr_base_unsigned_ull(va_arg(*ap, long long), \
+            my_put_nbr_base_unsigned_ull(va_arg(*ap, long long),
             "0123456789abcdef");
             break;
         default:

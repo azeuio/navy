@@ -10,13 +10,13 @@
 
 static int get_padding_size(unsigned long long n, int base, char *format)
 {
-    return format[width_fflags] - format[precision_fflag] - \
-    (get_nbr_len_in_base(n, base)) * \
-    ((get_nbr_len_in_base(n, base)) > format[precision_fflag]) -\
+    return format[width_fflags] - format[precision_fflag] -
+    (get_nbr_len_in_base(n, base)) *
+    ((get_nbr_len_in_base(n, base)) > format[precision_fflag]) -
     format[signed_fflag];
 }
 
-static void add_padding_switch(unsigned long long n, char *format, \
+static void add_padding_switch(unsigned long long n, char *format,
 char specifier, char c)
 {
     int h_ff = (n != 0 ? format[hash_fflag] : 0);
