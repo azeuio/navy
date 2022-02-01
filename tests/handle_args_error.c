@@ -6,6 +6,7 @@
 */
 
 #include <criterion/criterion.h>
+#include <criterion/redirect.h>
 #include "navy.h"
 
 const char *good_av_p1[3] = {
@@ -34,22 +35,22 @@ const char *wrong_av_too_many[6] = {
     NULL,
 };
 
-Test(handle_arg_error, not_enough_arguments)
+Test(handle_arg_error, not_enough_arguments, .init=cr_redirect_stdout)
 {
     cr_assert_eq(handle_args_error(1, wrong_av_not_enough), 1);
 }
 
-Test(handle_arg_error, too_many_arguments)
+Test(handle_arg_error, too_many_arguments, .init=cr_redirect_stdout)
 {
     cr_assert_eq(handle_args_error(4, wrong_av_too_many), 1);
 }
 
-Test(handle_arg_error, good_arguments_p1)
+Test(handle_arg_error, good_arguments_p1, .init=cr_redirect_stdout)
 {
     cr_assert_eq(handle_args_error(2, good_av_p1), 0);
 }
 
-Test(handle_arg_error, good_arguments_p2)
+Test(handle_arg_error, good_arguments_p2, .init=cr_redirect_stdout)
 {
     cr_assert_eq(handle_args_error(2, good_av_p2), 0);
 }
