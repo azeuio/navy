@@ -26,8 +26,8 @@ static int shoot_enemy_at(board_t *discovered_board, int x, int y)
     return (shot_landed == game_lost);
 }
 
-static void get_shooting_target_inner_loop\
-(int read_size, char **input, size_t *input_size)
+static void get_shooting_target_inner_loop
+(int read_size, char **input, size_t *input_size, board_t *enemy_board)
 {
     int first_loop = 1;
 
@@ -44,21 +44,21 @@ static void get_shooting_target_inner_loop\
         }
         if (read_size != 3)
             continue;
-        if (!((*input)[0] >= 'A' && (*input)[0] <= 'H') ||
-        !((*input)[1] >= '1' && (*input)[1] <= '8'))
+        if (!is_coord_valid((*input)[0], (*input)[1], *enemy_board))
             continue;
         break;
     }
 }
 
-static int *get_shooting_target(void)
+static int *get_shooting_target(board_t *enemy_board)
 {
     size_t input_size = 2048;
     char *input = malloc(input_size);
     int read_size = -1;
     int *result = NULL;
 
-    get_shooting_target_inner_loop(read_size, &input, &input_size);
+    get_shooting_target_inner_loop(read_size, &input, &input_size,
+    enemy_board);
     result = malloc(sizeof(int) * 2);
     errno = (input[0] == -1);
     result[0] = input[0] - 'A';
@@ -72,7 +72,7 @@ int my_turn(board_t *enemy_board)
     int *xy = NULL;
     int game_has_ended = 0;
 
-    xy = get_shooting_target();
+    xy = get_shooting_target(enemy_board);
     if (errno == 1) {
         send_signal(enemy_pid, stop_game);
         free(xy);

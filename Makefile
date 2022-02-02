@@ -18,6 +18,7 @@ SRC			=	src/main.c					\
 				src/av_contains.c			\
 				src/handle_args_error.c		\
 				src/file_is_valid.c			\
+				src/is_coord_valid.c		\
 
 TEST_SRC	=	tests/av_contains.c				\
 				tests/handle_args_error.c		\

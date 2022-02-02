@@ -33,6 +33,7 @@ int print_help(void);
 int av_contains(const char **av, const char *str);
 int handle_args_error(const int ac, const char **av);
 int file_is_valid(const char *filename);
+int is_coord_valid(char x, char y, board_t board);
 
 void game(board_t my, int curr_player);
 
