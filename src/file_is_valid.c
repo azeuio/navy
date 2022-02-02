@@ -13,18 +13,41 @@
 #include "navy.h"
 #include "my.h"
 
+static int len_is_valid(char val)
+{
+    if (!my_isnum(val))
+        return 0;
+    if (!('1' <= val && val <= '8'))
+        return 0;
+    return 1;
+}
+
+static int pos_is_valid(char *pos)
+{
+    if (!(my_isalpha(pos[0]) && my_isnum(pos[1])))
+        return 0;
+    if (!('A' <= pos[0] && pos[0] <= 'H'))
+        return 0;
+    if (!('1' <= pos[1] && pos[1] <= '8'))
+        return 0;
+    return 1;
+}
+
 static int line_is_valid(char *line, int len)
 {
     if (!(len == 7 || len == 8))
         return 0;
-    if (!(my_isnum(line[0]) && line[1] == ':'))
+    if (!(len_is_valid(line[0]) && line[1] == ':'))
         return 0;
-    if (!(my_isalpha(line[2]) && my_isnum(line[3]) && line[4] == ':'))
+    if (!(pos_is_valid(line + 2) && line[4] == ':'))
         return 0;
-    if (!(my_isalpha(line[5]) && my_isnum(line[6])))
+    if (!(pos_is_valid(line + 5)))
         return 0;
     if (!(line[7] == '\n' || line[7] == '\0'))
         return 0;
+    if ((line[0] - '0') != (ABS(line[3] - line[6]) + 1))
+        if ((line[0] - '0') != (ABS(line[2] - line[5]) + 1))
+            return 0;
     return 1;
 }
 
