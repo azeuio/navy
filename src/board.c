@@ -24,23 +24,6 @@ board_t create_empty_board(void)
     return board;
 }
 
-static int is_line_valid(char *line)
-{
-    int len = my_strlen(line);
-
-    if (!(len == 7 || len == 8))
-        return 0;
-    if (!(my_isnum(line[0]) && line[1] == ':'))
-        return 0;
-    if (!(my_isalpha(line[2]) && my_isnum(line[3]) && line[4] == ':'))
-        return 0;
-    if (!(my_isalpha(line[5]) && my_isnum(line[6])))
-        return 0;
-    if (!(line[7] == '\n' || line[7] == '\0'))
-        return 0;
-    return 1;
-}
-
 static void load_line(board_t *board, char *line)
 {
     int is_vertical = 0;
@@ -70,10 +53,7 @@ board_t load_board(const char *filename)
     buffer = malloc(sizeof(char) * bufsize);
     read_size = getline(&buffer, &bufsize, file);
     while (read_size > 0) {
-        if (!is_line_valid(buffer)) {
-            read_size = getline(&buffer, &bufsize, file);
-            continue;
-        }
+        read_size = getline(&buffer, &bufsize, file);
         load_line(&board, buffer);
         read_size = getline(&buffer, &bufsize, file);
     }
