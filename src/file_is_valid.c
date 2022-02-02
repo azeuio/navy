@@ -45,9 +45,12 @@ static int line_is_valid(char *line, int len)
         return 0;
     if (!(line[7] == '\n' || line[7] == '\0'))
         return 0;
-    if ((line[0] - '0') != (ABS(line[3] - line[6]) + 1))
+    if ((line[0] - '0') != (ABS(line[3] - line[6]) + 1)) {
         if ((line[0] - '0') != (ABS(line[2] - line[5]) + 1))
             return 0;
+    }
+    if (!(line[2] == line[5] || line[3] == line[6]))
+        return 0;
     return 1;
 }
 
