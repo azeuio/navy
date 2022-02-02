@@ -28,15 +28,12 @@ static void load_line(board_t *board, char *line)
 {
     int is_vertical = 0;
     int ship_size = 0;
-    int i = 0;
 
-    for (i = 0; line[i] != ':'; i++) {
-    }
-    is_vertical = line[i + 2] == line[i + 5];
-    ship_size = my_getnbr(line);
-    for (int j = 0; j < ship_size; j++) {
-        (*board)[line[i + 2] - '1' + j * !is_vertical]\
-        [line[i + 1] - 'A' + j * is_vertical] = ship_size;
+    is_vertical = line[3] == line[6];
+    ship_size = line[0] - '0';
+    for (int i = 0; i < ship_size; i++) {
+        (*board)[line[3] - '1' + i * !is_vertical]
+        [line[2] - 'A' + i * is_vertical] = ship_size;
     }
 }
 
@@ -52,8 +49,7 @@ board_t load_board(const char *filename)
         return NULL;
     buffer = malloc(sizeof(char) * bufsize);
     read_size = getline(&buffer, &bufsize, file);
-    while (read_size > 0) {
-        read_size = getline(&buffer, &bufsize, file);
+    while (read_size != EOF) {
         load_line(&board, buffer);
         read_size = getline(&buffer, &bufsize, file);
     }
