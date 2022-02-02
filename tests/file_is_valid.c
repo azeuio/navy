@@ -85,3 +85,17 @@ Test(file_is_valid, wrong_separator)
 
     cr_assert_eq(got, 0, "expected 0 got %d\0", got);
 }
+
+Test(file_is_valid, diagonal_boat)
+{
+    int got = file_is_valid("tests/boards/diagonal_boat");
+
+    cr_assert_eq(got, 0, "expected 0 got %d\0", got);
+}
+
+Test(file_is_valid, intersecting_boat)
+{
+    int got = file_is_valid("tests/boards/intersecting_boat");
+
+    cr_assert_eq(got, 0, "expected 0 got %d\0", got);
+}
