@@ -62,3 +62,8 @@ Test(load_board, two_boat_same_len)
     }
     board_destroy(board);
 }
+
+Test(load_board, intersecting_boat)
+{
+    cr_assert_null(load_board("tests/boards/intersecting_boat"));
+}
