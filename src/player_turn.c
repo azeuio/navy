@@ -33,7 +33,7 @@ static void get_shooting_target_inner_loop\
 
     while (1) {
         if (!first_loop)
-            my_printf("wrong positions\n");
+            my_printf("wrong position\n");
         first_loop = 0;
         my_printf("attack: ");
         read_size = getline(input, input_size, stdin);
