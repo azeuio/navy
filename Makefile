@@ -23,6 +23,7 @@ TEST_SRC	=	tests/av_contains.c				\
 				tests/handle_args_error.c		\
 				tests/file_is_valid.c			\
 				tests/connect_to.c				\
+				tests/load_board.c				\
 
 OBJ			=	$(SRC:.c=.o)
 
