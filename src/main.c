@@ -30,7 +30,7 @@ static int player2_start_game(const char **av)
     int my_pid = getpid();
     struct sigaction act = {0};
 
-    act.sa_handler = signal_handler;
+    act.sa_handler = counter;
     sigaction(SIGUSR1, &act, NULL);
     sigaction(SIGUSR2, &act, NULL);
     my_printf("my_pid: %d\n", my_pid);

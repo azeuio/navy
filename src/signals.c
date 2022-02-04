@@ -14,7 +14,7 @@
 
 int enemy_pid = -1;
 
-int signal_handler(int sig)
+int counter(int sig)
 {
     static int cntr = 0;
     static int last_cntr = 0;
@@ -50,8 +50,8 @@ int receive_signal(void)
 {
     do {
         pause();
-    } while (signal_handler(0) != 0);
-    return signal_handler(-1);
+    } while (counter(0) != 0);
+    return counter(-1);
 }
 
 void set_enemy_pid(int sig, siginfo_t *info, void *context)
@@ -71,7 +71,7 @@ int wait_for_connection(void)
     pause();
     sigemptyset(&act.sa_mask);
     act.sa_sigaction = NULL;
-    act.sa_handler = signal_handler;
+    act.sa_handler = counter;
     sigaction(SIGUSR1, &act, NULL);
     sigaction(SIGUSR2, &act, NULL);
     send_signal(enemy_pid, 1);
