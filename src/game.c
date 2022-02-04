@@ -39,6 +39,8 @@ void game(board_t my, int curr_player)
     my_printf("\n");
     exit_type = main_loop(&my, &enemy_board, curr_player);
     if (exit_type != game_stopped) {
+        if (exit_type == game_won)
+            my_printf("\n");
         print_boards(&my, &enemy_board);
         my_printf("%s won\n", (exit_type == game_won) ? "I" : "Enemy");
     }
