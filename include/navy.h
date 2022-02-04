@@ -40,7 +40,7 @@ void game(board_t my, int curr_player);
 int my_turn(board_t *enemy_board);
 int other_player_turn(board_t *my);
 
-void signal_handler(int sig);
+int signal_handler(int sig);
 
 board_t create_empty_board(void);
 board_t load_board(const char *filename);

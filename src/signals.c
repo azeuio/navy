@@ -12,12 +12,17 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-static int cntr = 0;
-static int last_cntr = 0;
 int enemy_pid = -1;
 
-void signal_handler(int sig)
+int signal_handler(int sig)
 {
+    static int cntr = 0;
+    static int last_cntr = 0;
+
+    if (sig == 0)
+        return cntr;
+    if (sig == -1)
+        return last_cntr;
     switch (sig) {
         case SIGUSR1:
             last_cntr = cntr;
@@ -43,12 +48,10 @@ void send_signal(int destination, int n)
 
 int receive_signal(void)
 {
-    last_cntr = 0;
-    cntr = 0;
     do {
         pause();
-    } while (cntr != 0);
-    return last_cntr;
+    } while (signal_handler(0) != 0);
+    return signal_handler(-1);
 }
 
 void set_enemy_pid(int sig, siginfo_t *info, void *context)
