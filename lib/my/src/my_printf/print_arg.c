@@ -10,8 +10,8 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-static int printf_nbr_switch\
-(char *str, int specifer_idx, unsigned long long n)
+static int printf_nbr_switch(
+char *str, int specifer_idx, unsigned long long n)
 {
     switch (str[specifer_idx]) {
         case 'o':
@@ -69,8 +69,8 @@ static void printf_nbr(char *str, int *i, int specifer_idx, va_list *ap)
     free(format);
 }
 
-static void print_str_or_nbr_arg\
-(int specifier_idx, char *str, int *i, va_list *ap)
+static void print_str_or_nbr_arg(
+int specifier_idx, char *str, int *i, va_list *ap)
 {
     switch (str[specifier_idx]) {
         case 's':

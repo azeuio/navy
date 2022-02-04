@@ -8,8 +8,8 @@
 #include "my.h"
 #include "my_printf.h"
 
-static void add_zeros_switch\
-(unsigned long long n, char *format, char specifier, int size)
+static void add_zeros_switch(
+unsigned long long n, char *format, char specifier, int size)
 {
     int h_ff = n != 0 ? format[hash_fflag] * (format[precision_fflag] == 0): 0;
 

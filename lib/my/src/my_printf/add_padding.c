@@ -39,7 +39,7 @@ char specifier, char c)
 
 void add_padding(unsigned long long n, char *format, char specifier, char c)
 {
-    int size = format[width_fflags] - format[precision_fflag]\
+    int size = format[width_fflags] - format[precision_fflag]
     - format[signed_fflag];
 
     if (size <= 0 || (format[zero_fflag] == 1 && format[precision_fflag] == 0))

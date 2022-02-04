@@ -9,8 +9,8 @@
 #include <stdlib.h>
 #include <limits.h>
 
-static int *my_str_to_word_len_array\
-(const char *str, const char *separators, int word_count)
+static int *my_str_to_word_len_array(const char *str, const char *separators,
+int word_count)
 {
     int i = 0;
     int result_idx = 0;
@@ -37,8 +37,8 @@ static char **custom_return(int *word_len_array, char **return_value)
     return return_value;
 }
 
-static void build_word_array(\
-int word_count, int *word_len_array, char ***result, const char *str)
+static void build_word_array(int word_count, int *word_len_array,
+char ***result, const char *str)
 {
     int str_idx = 0;
 
