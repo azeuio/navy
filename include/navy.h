@@ -9,7 +9,7 @@
 
 extern int enemy_pid;
 
-typedef int** board_t;
+typedef int **board_t;
 
 enum cell_state {
     cell_empty = 0,
