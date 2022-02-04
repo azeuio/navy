@@ -11,15 +11,10 @@
 int board_eq(board_t a, board_t b)
 {
     int n_differences = 0;
-    // my_printf("\n");
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            // cr_assert_eq(a[i][j], b[i][j]);
             n_differences += a[i][j] != b[i][j];
-            // my_printf("%d", a[i][j]);
-            // cr_log_error("%d", b[i][j]);
         }
-        // my_printf("\n");
     }
     return n_differences;
 }
