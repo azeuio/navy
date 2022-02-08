@@ -43,8 +43,8 @@ static int load_line(board_t *board, char *line)
     return 0;
 }
 
-static board_t free_close_and_return(
-void *to_free, FILE *to_close, board_t to_return)
+static board_t free_close_and_return(void *to_free,
+FILE *to_close, board_t to_return)
 {
     if (to_free != NULL)
         free(to_free);
