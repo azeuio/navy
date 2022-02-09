@@ -35,7 +35,7 @@ int handle_args_error(const int ac, const char **av);
 int file_is_valid(const char *filename);
 int is_coord_valid(char x, char y, board_t board);
 
-void game(board_t my, int curr_player);
+int game(board_t my, int curr_player);
 
 int my_turn(board_t *enemy_board);
 int other_player_turn(board_t *my);

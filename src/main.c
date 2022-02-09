@@ -20,8 +20,7 @@ static int player1_start_game(const char **av)
     my_printf("waiting for enemy connection...\n\n");
     wait_for_connection();
     my_printf("enemy connected\n");
-    game(my, 1);
-    return 0;
+    return game(my, 1);
 }
 
 static int player2_start_game(const char **av)
@@ -38,8 +37,7 @@ static int player2_start_game(const char **av)
         board_destroy(my);
         return 84;
     }
-    game(my, 2);
-    return 0;
+    return game(my, 2);
 }
 
 int main(const int ac, const char **av)
@@ -51,10 +49,9 @@ int main(const int ac, const char **av)
         return 84;
     }
     if (ac == 2)
-        player1_start_game(av);
+        return player1_start_game(av);
     else if (ac == 3)
-        player2_start_game(av);
+        return player2_start_game(av);
     else
         return 84;
-    return 0;
 }

@@ -31,7 +31,7 @@ static int main_loop(board_t *my, board_t *enemy_board, int curr_player)
     return quit;
 }
 
-void game(board_t my, int curr_player)
+int game(board_t my, int curr_player)
 {
     board_t enemy_board = create_empty_board();
     int exit_type = -1;
@@ -46,4 +46,5 @@ void game(board_t my, int curr_player)
     }
     board_destroy(enemy_board);
     board_destroy(my);
+    return (exit_type != game_won);
 }
