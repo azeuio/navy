@@ -27,7 +27,17 @@ static int pos_is_valid(char *pos)
     return 1;
 }
 
-int line_is_valid(char *line, int len)
+static int boat_of_len_can_be_added(int len, unsigned char *boats_in_board)
+{
+    if (!(2 <= len && len <= 5))
+        return 0;
+    if ((*boats_in_board) & (1 << (len - 2)))
+        return 0;
+    (*boats_in_board) |= (1 << (len - 2));
+    return 1;
+}
+
+int line_is_valid(char *line, int len, unsigned char *boats_in_board)
 {
     if (!(len == 7 || len == 8))
         return 0;
@@ -45,5 +55,9 @@ int line_is_valid(char *line, int len)
     }
     if (!(line[2] == line[5] || line[3] == line[6]))
         return 0;
+    if (!boat_of_len_can_be_added(line[0] - '0', boats_in_board)) {
+        my_printf("hi");
+        return 0;
+    }
     return 1;
 }

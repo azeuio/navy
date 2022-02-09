@@ -56,4 +56,4 @@ int wait_for_connection(void);
 int connect_to(int destination);
 int send_position(int x, int y);
 int *receive_position(board_t *board);
-int line_is_valid(char *line, int len);
+int line_is_valid(char *line, int len, unsigned char *boats_in_board);

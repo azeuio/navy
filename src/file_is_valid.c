@@ -29,6 +29,7 @@ int file_is_valid(const char *filename)
     FILE *file = fopen(filename, "r");
     char *buffer = NULL;
     ssize_t read_size;
+    unsigned char boats_in_board = 0;
 
     if (file == NULL) {
         return close_and_return(0, file, buffer);
@@ -37,13 +38,12 @@ int file_is_valid(const char *filename)
     if (my_strlen(buffer) == 0)
         return close_and_return(0, file, buffer);
     while (read_size != -1 && buffer != NULL) {
-        if (!line_is_valid(buffer, read_size)) {
+        if (!line_is_valid(buffer, read_size, &boats_in_board))
             return close_and_return(0, file, buffer);
-        }
         free(buffer);
         buffer = NULL;
         zero = 0;
         read_size = getline(&buffer, &zero, file);
     }
-    return close_and_return(1, file, buffer);
+    return close_and_return(boats_in_board == 0b1111, file, buffer);
 }
