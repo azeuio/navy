@@ -106,3 +106,10 @@ Test(file_is_valid, too_many_boats)
 
     cr_assert_eq(got, 0, "expected 0 got %d\0", got);
 }
+
+Test(file_is_valid, not_good_len_boats)
+{
+    int got = file_is_valid("tests/boards/not_2345_len_boats");
+
+    cr_assert_eq(got, 0, "expected 0 got %d\0", got);
+}
