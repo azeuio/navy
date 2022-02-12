@@ -92,3 +92,17 @@ Test(file_is_valid, diagonal_boat)
 
     cr_assert_eq(got, 0, "expected 0 got %d\0", got);
 }
+
+Test(file_is_valid, not_enough_boats)
+{
+    int got = file_is_valid("tests/boards/not_enouph_boats");
+
+    cr_assert_eq(got, 0, "expected 0 got %d\0", got);
+}
+
+Test(file_is_valid, too_many_boats)
+{
+    int got = file_is_valid("tests/boards/too_many_boats");
+
+    cr_assert_eq(got, 0, "expected 0 got %d\0", got);
+}
